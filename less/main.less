@@ -1,0 +1,61 @@
+@import "normalize-3.0.1.less";
+@import "elements-0.9.less";
+@import "font-awesome-4.1.0.less";
+
+//------------------------------------------------------------------------------
+// Fonts
+//------------------------------------------------------------------------------
+
+@font-face {
+  font-family: 'Open Sans Light';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/OpenSans-Light.eot');
+  src: local('Open Sans Light'), local('OpenSans-Light'),
+    url('../fonts/OpenSans-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/OpenSans.eot');
+  src: local('Open Sans'), local('OpenSans'),
+    url('../fonts/OpenSans.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/OpenSans-Semibold.eot');
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'),
+    url('../fonts/OpenSans-Semibold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/SourceCodePro-Regular.eot');
+  src: local('Source Code Pro'), local('SourceCodePro-Regular'),
+    url('../fonts/SourceCodePro-Regular.woff') format('woff');
+}
+
+.font-light(@size) {
+  font-family: 'Open Sans Light';
+  font-size: @size;
+  font-weight: 300;
+}
+
+.font-normal(@size) {
+  font-family: 'Open Sans';
+  font-size: @size;
+  font-weight: 400;
+}
+
+.font-bold(@size) {
+  font-family: 'Open Sans';
+  font-size: @size;
+  font-weight: 600;
+}
