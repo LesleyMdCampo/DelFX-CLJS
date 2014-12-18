@@ -19,18 +19,18 @@
         :source-paths ["delfx-src"]
         :compiler {
           :optimizations :whitespace
-          :outout-to "public/js/src.js"
+          :output-to "public/js/src.js"
         }
       }
 
-      :delfx-adv {
-        :source-paths ["delfx-src"]
-        :compiler {
-          :externs [
-          "externs/jquery-1.9.js"
-          "externs/jquery-ui.js"
-          "externs/react-0.11.0.js"]
-        :output-to "public/js/src.min.js"
-        :optimizations :advanced
-        :pretty-print false }}
+      ; :delfx-adv {
+      ;   :source-paths ["delfx-src"]
+      ;   :compiler {
+      ;     :externs [
+      ;     "externs/jquery-1.9.js"
+      ;     "externs/jquery-ui.js"
+      ;     "externs/react-0.11.0.js"]
+      ;   :output-to "public/js/src.min.js"
+      ;   :optimizations :advanced
+      ;   :pretty-print false }}
     }})
