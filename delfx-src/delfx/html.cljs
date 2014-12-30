@@ -11,6 +11,11 @@
 ;; Body
 ;;------------------------------------------------------------------------------
 
+(hiccups/defhtml social-icons []
+  [:i.fa.fa-twitter]
+  [:i.fa.fa-youtube]
+  [:i.fa.fa-envelope-o])
+
 (hiccups/defhtml header []
   [:div#wrap
     [:div.large-header-1fed0
@@ -18,7 +23,8 @@
         [:div.del-bd3cd
           [:img.logo-d34c1 {:src "../img/dmdelc.jpg"}]
           [:div.title-fe5d6 "Daniel Martin del Campo"]
-          [:div.about-1043c "Motion Graphics Designer"]]]]
+          [:div.about-1043c "Motion Graphics Designer"]
+          [:div.social-43a6b (social-icons)]]]]
     [:div.clr-bc54a]])
 
 (hiccups/defhtml about-section []
