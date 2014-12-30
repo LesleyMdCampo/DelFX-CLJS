@@ -62,7 +62,7 @@
     [:p.lrg-ca862 "submit"]])
 
 (hiccups/defhtml footer []
-  [:footer.footer-309d2
+  [:footer.footer-309d2 
     [:div.container-32dc6
       [:div.contact-999b4
         [:div.contact-blurb-e59b3 "If you would like to commission any work, are interested in hiring me or have any queries please contact me below:"]
@@ -75,6 +75,7 @@
       (sticky-header)
       (work-categories)]
     (footer)
-    [:div.copyright-71f95 "&copy 2015 daniel martin del campo"])
+    [:div.copyright-71f95 "&copy2015 daniel martin " 
+      [:span.lowercase-de065 "del "] "campo"])
 
 (dom/set-html! "content" (body))
