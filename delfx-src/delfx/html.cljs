@@ -12,9 +12,9 @@
 ;;------------------------------------------------------------------------------
 
 (hiccups/defhtml social-icons []
-  [:i.fa.fa-twitter]
-  [:i.fa.fa-youtube]
-  [:i.fa.fa-envelope-o])
+  [:a.fa.fa-twitter {:href "https://twitter.com/dels_tweet" :data-username "dels_tweet" :target "_blank"}]
+  [:a.fa.fa-youtube {:href "https://www.youtube.com/channel/UCT-Qt4bxBy2u--iwaWh1k3w" :target "_blank"}]
+  [:a.fa.fa-envelope-o {:href "mailto:dmdelc27@gmail.com?subject=love your work man" :target "_blank"}])
 
 (hiccups/defhtml header []
   [:div#wrap
