@@ -8,6 +8,7 @@
 .lein-plugins/
 
 /public/out/
+/public/img/
 /public/js/src.js
 /public/js/src.min.js
 /public/work-files.json
