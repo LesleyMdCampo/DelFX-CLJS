@@ -8,8 +8,8 @@
 .lein-plugins/
 
 /public/out/
-/public/js/delfx-src.js
-/public/js/delfx-src.min.js
+/public/js/src.js
+/public/js/src.min.js
 /public/work-files.json
 /node-modules
 
