@@ -45,12 +45,16 @@
         [:a.nav-link-a7aa8.type4 "Graphic Design"]]]
         [:div.clr-bc54a]])
 
-(hiccups/defhtml work-categories []
+(hiccups/defhtml category-circles []
   [:div.types-circles-f5820
-    [:div.type-circle-1caf1]
-    [:div.type-circle-1caf1]
-    [:div.type-circle-1caf1]
-    [:div.type-circle-1caf1]
+    [:div.type-circle-1caf1
+      [:img.round-img-242ac {:src "../img/doodle-dude.jpg"}]]
+    [:div.type-circle-1caf1
+      [:img.round-img-242ac {:src "../img/navigation.png"}]]
+    [:div.type-circle-1caf1
+      [:img.round-img-242ac {:src "../img/harry-spider.png"}]]
+    [:div.type-circle-1caf1
+      [:img.round-img-242ac {:src "../img/feliz.png"}]]
     [:div.clr-bc54a]])
 
 (hiccups/defhtml contact-me []
@@ -73,7 +77,7 @@
     [:div.main-container-dc45e
       (about-section)
       (sticky-header)
-      (work-categories)]
+      (category-circles)]
     (footer)
     [:div.copyright-71f95 "&copy2015 daniel martin " 
       [:span.lowercase-de065 "del "] "campo"])
