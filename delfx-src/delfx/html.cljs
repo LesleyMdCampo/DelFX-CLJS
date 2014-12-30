@@ -48,13 +48,22 @@
 (hiccups/defhtml category-circles []
   [:div.types-circles-f5820
     [:div.type-circle-1caf1
-      [:img.round-img-242ac {:src "../img/doodle-dude.jpg"}]]
+      [:img.round-img-242ac.works {:src "../img/doodle-dude.jpg"}]]
     [:div.type-circle-1caf1
-      [:img.round-img-242ac {:src "../img/navigation.png"}]]
+      [:img.round-img-242ac.styleboards {:src "../img/navigation.png"}]]
     [:div.type-circle-1caf1
-      [:img.round-img-242ac {:src "../img/harry-spider.png"}]]
+      [:img.round-img-242ac.storyboards {:src "../img/harry-spider.png"}]]
     [:div.type-circle-1caf1
-      [:img.round-img-242ac {:src "../img/feliz.png"}]]
+      [:img.round-img-242ac.design {:src "../img/feliz.png"}]]
+    [:div.clr-bc54a]
+    [:div.type-circle-1caf1
+      [:img.round-img-242ac.storyboards {:src "../img/harry-spider.png"}]]
+    [:div.type-circle-1caf1
+      [:img.round-img-242ac.design {:src "../img/feliz.png"}]]
+    [:div.type-circle-1caf1
+      [:img.round-img-242ac.styleboards {:src "../img/navigation.png"}]]
+    [:div.type-circle-1caf1
+      [:img.round-img-242ac.works {:src "../img/doodle-dude.jpg"}]]
     [:div.clr-bc54a]])
 
 (hiccups/defhtml contact-me []
