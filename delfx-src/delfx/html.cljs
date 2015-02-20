@@ -23,11 +23,16 @@
 ;; Events
 ;;------------------------------------------------------------------------------
 
+(defn- show-type [type]
+  (.hide ($ "img.round-img-242ac"))
+  (.show ($ (str "img.round-img-242ac." type))))
+
 (defn- click-work-type [js-evt]
   (let [link (aget js-evt "currentTarget" "id")
         link-id (str "#" link)]
-    (.hide ($ "img.round-img-242ac"))
-    (.show ($ (str "img.round-img-242ac." link)))))
+    (if (= link "all")
+      (.show ($ "img.round-img-242ac"))
+      (show-type link))))
 
 (defn- add-events []
   (.on ($ ".nav-link-a7aa8") "click" #(click-work-type %)))
@@ -54,6 +59,7 @@
   [:div.sticky-header-d95b2
     [:div.container-32dc6
       [:div.header-links-a2c3d
+        [:a.nav-link-a7aa8.all-types {:id "all"} "All"]
         [:a.nav-link-a7aa8.type1 {:id "works"} "Works"]
         [:a.nav-link-a7aa8.type2 {:id "styleboards"} "Styleboards"]
         [:a.nav-link-a7aa8.type3 {:id "storyboards"} "Storyboards"]
