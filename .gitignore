@@ -7,12 +7,12 @@
 .lein-repl-history
 .lein-plugins/
 
+/node-modules
 /public/out/
 /public/img/
 /public/js/src.js
 /public/js/src.min.js
 /public/work-files.json
-/node-modules
 
 .DS_Store
 

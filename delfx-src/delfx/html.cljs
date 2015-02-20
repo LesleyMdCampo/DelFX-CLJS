@@ -3,12 +3,41 @@
   (:require
     [delfx.dom :as dom]
     [delfx.util :refer [js-log log]]
-    [hiccups.runtime]))
+    [hiccups.runtime]
+    [quiescent :include-macros true]
+    [sablono.core :as sablono :include-macros true]))
 
 (def $ js/jQuery)
 
 ;;------------------------------------------------------------------------------
-;; Body
+;; Works Data
+;;------------------------------------------------------------------------------
+
+(defn- works-data-structure [] [
+  {:title "Doodle Dude" :id "doodle-dude" :img "../img/doodle-dude.jpg" :type "works"}
+  {:title "Navigation" :id "navigation" :img "../img/navigation.png" :type "storyboards"}
+  {:title "Harry the Spider" :id "harry-spider" :img "../img/harry-spider.png" :type "styleboards"}
+  {:title "Feliz" :id "feliz" :img "../img/feliz.png" :type "design"}])
+
+;;------------------------------------------------------------------------------
+;; Events
+;;------------------------------------------------------------------------------
+
+(defn- click-work-div [js-evt]
+  (let [link (aget js-evt "currentTarget" "id")
+        link-id ( str "#" link)]
+    )
+  )
+
+(defn- add-events []
+  (.on ($ ".type-circle-1caf1") "click" #(click-work-div %))
+
+  )
+
+($ add-events)
+
+;;------------------------------------------------------------------------------
+;; HTML
 ;;------------------------------------------------------------------------------
 
 (hiccups/defhtml social-icons []
@@ -45,25 +74,15 @@
         [:a.nav-link-a7aa8.type4 "Graphic Design"]]]
         [:div.clr-bc54a]])
 
-(hiccups/defhtml category-circles []
+(hiccups/defhtml category-circles [work]
+  [:div.type-circle-1caf1 {:id (:id work)}
+    [:img
+      {:class (str "round-img-242ac " (:type work))
+       :src (:img work)}]])
+
+(hiccups/defhtml works-circles []
   [:div.types-circles-f5820
-    [:div.type-circle-1caf1
-      [:img.round-img-242ac.works {:src "../img/doodle-dude.jpg"}]]
-    [:div.type-circle-1caf1
-      [:img.round-img-242ac.styleboards {:src "../img/navigation.png"}]]
-    [:div.type-circle-1caf1
-      [:img.round-img-242ac.storyboards {:src "../img/harry-spider.png"}]]
-    [:div.type-circle-1caf1
-      [:img.round-img-242ac.design {:src "../img/feliz.png"}]]
-    [:div.clr-bc54a]
-    [:div.type-circle-1caf1
-      [:img.round-img-242ac.storyboards {:src "../img/harry-spider.png"}]]
-    [:div.type-circle-1caf1
-      [:img.round-img-242ac.design {:src "../img/feliz.png"}]]
-    [:div.type-circle-1caf1
-      [:img.round-img-242ac.styleboards {:src "../img/navigation.png"}]]
-    [:div.type-circle-1caf1
-      [:img.round-img-242ac.works {:src "../img/doodle-dude.jpg"}]]
+    (map category-circles (works-data-structure))
     [:div.clr-bc54a]])
 
 (hiccups/defhtml contact-me []
@@ -75,7 +94,7 @@
     [:p.lrg-ca862 "submit"]])
 
 (hiccups/defhtml footer []
-  [:footer.footer-309d2 
+  [:footer.footer-309d2
     [:div.container-32dc6
       [:div.contact-999b4
         [:div.contact-blurb-e59b3 "If you would like to commission any work, are interested in hiring me or have any queries please contact me below:"]
@@ -86,9 +105,9 @@
     [:div.main-container-dc45e
       (about-section)
       (sticky-header)
-      (category-circles)]
+      (works-circles)]
     (footer)
-    [:div.copyright-71f95 "&copy2015 daniel martin " 
+    [:div.copyright-71f95 "&copy2015 daniel martin "
       [:span.lowercase-de065 "del "] "campo"])
 
 (dom/set-html! "content" (body))
