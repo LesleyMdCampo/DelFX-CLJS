@@ -34,8 +34,15 @@
       (.show ($ "img.round-img-242ac"))
       (show-type link))))
 
+(defn- click-work-circle [js-evt]
+  (let [link (aget js-evt "currentTarget" "id")
+        link-id (str "#" link)])
+    (js-log js-evt)
+  )
+
 (defn- add-events []
-  (.on ($ ".nav-link-a7aa8") "click" #(click-work-type %)))
+  (.on ($ ".nav-link-a7aa8") "click" #(click-work-type %))
+  (.on ($ ".type-circle-1caf1") "click" #(click-work-circle %)))
 
 ($ add-events)
 
@@ -43,12 +50,17 @@
 ;; HTML
 ;;------------------------------------------------------------------------------
 
+(hiccups/defhtml project-page-html []
+  [:h2 "Title"]
+  [:div "youTube embedded"]
+  [:div "description"]
+  [:div "link to home or next work?"])
+
 (hiccups/defhtml category-circles [work]
   [:div.type-circle-1caf1 {:id (:id work)}
-    [:a {:href (str "works/" (:id work) ".html")}
-      [:img
-        {:class (str "round-img-242ac " (:type work))
-         :src (:img work)}]]])
+    [:img
+      {:class (str "round-img-242ac " (:type work))
+       :src (:img work)}]])
 
 (hiccups/defhtml works-circles []
   [:div.types-circles-f5820
@@ -116,3 +128,9 @@
       [:span.lowercase-de065 "del "] "campo"])
 
 (set-html! "content" (body))
+
+;;------------------------------------------------------------------------------
+;; Public JS API
+;;------------------------------------------------------------------------------
+
+(js/goog.exportSymbol "delfx.html.project" project-page-html)
