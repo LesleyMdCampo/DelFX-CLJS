@@ -1,23 +1,15 @@
 (ns delfx.html
   (:require-macros [hiccups.core :as hiccups])
   (:require
+    [clojure.walk :refer [keywordize-keys]]
     [delfx.dom :refer [by-id set-html!]]
     [delfx.util :refer [js-log log]]
-    [hiccups.runtime]
-    [quiescent :include-macros true]
-    [sablono.core :as sablono :include-macros true]))
+    [hiccups.runtime]))
 
 (def $ js/jQuery)
+(def projects-data (atom nil))
 
-;;------------------------------------------------------------------------------
-;; Works Data
-;;------------------------------------------------------------------------------
-
-(defn- works-data-structure [] [
-  {:title "Doodle Dude" :id "doodle-dude" :img "../img/doodle-dude.jpg" :type "works"}
-  {:title "Navigation" :id "navigation" :img "../img/navigation.png" :type "storyboards"}
-  {:title "Harry the Spider" :id "harry-spider" :img "../img/harry-spider.png" :type "styleboards"}
-  {:title "Feliz" :id "feliz" :img "../img/feliz.png" :type "design"}])
+(declare fetch-content!)
 
 ;;------------------------------------------------------------------------------
 ;; Events
@@ -38,11 +30,12 @@
   (let [link (aget js-evt "currentTarget" "id")
         link-id (str "#" link)])
     (js-log js-evt)
+    ;; handle project detail page redirect and html here
   )
 
 (defn- add-events []
-  (.on ($ ".nav-link-a7aa8") "click" #(click-work-type %))
-  (.on ($ ".type-circle-1caf1") "click" #(click-work-circle %)))
+  (.on ($ "body") "click" ".nav-link-a7aa8" #(click-work-type %))
+  (.on ($ "body") "click" ".type-circle-1caf1" #(click-work-circle %)))
 
 ($ add-events)
 
@@ -50,11 +43,8 @@
 ;; HTML
 ;;------------------------------------------------------------------------------
 
-(hiccups/defhtml project-page-html []
-  [:h2 "Title"]
-  [:div "youTube embedded"]
-  [:div "description"]
-  [:div "link to home or next work?"])
+(hiccups/defhtml single-project-page []
+  (log @projects-data))
 
 (hiccups/defhtml category-circles [work]
   [:div.type-circle-1caf1 {:id (:id work)}
@@ -64,7 +54,7 @@
 
 (hiccups/defhtml works-circles []
   [:div.types-circles-f5820
-    (map category-circles (works-data-structure))
+    (map category-circles @projects-data)
     [:div.clr-bc54a]])
 
 (hiccups/defhtml sticky-header []
@@ -118,19 +108,40 @@
         [:div.contact-blurb-e59b3 "If you would like to commission any work, are interested in hiring me or have any queries please contact me below:"]
         (contact-me)]]])
 
-(hiccups/defhtml body []
-    (header)
-    [:div.main-container-dc45e
-      (about-section)
-      (sticky-header)]
-    (footer)
-    [:div.copyright-71f95 "&copy2015 daniel martin "
-      [:span.lowercase-de065 "del "] "campo"])
-
-(set-html! "content" (body))
+(hiccups/defhtml body [data]
+  (header)
+  [:div.main-container-dc45e
+    (about-section)
+    (sticky-header)]
+  (footer)
+  [:div.copyright-71f95 "&copy2015 daniel martin "
+    [:span.lowercase-de065 "del "] "campo"])
 
 ;;------------------------------------------------------------------------------
-;; Public JS API
+;; Ajax
 ;;------------------------------------------------------------------------------
 
-(js/goog.exportSymbol "delfx.html.project" project-page-html)
+(defn- data-success [data]
+  (let [prj-data (aget data "projects")]
+    (->> prj-data
+      js->clj
+      keywordize-keys
+      (reset! projects-data)))
+  (fetch-content!))
+
+(defn- fetch-data! []
+  (.ajax $ (js-obj "url" "data.json"
+    "success" data-success)))
+
+(defn- fetch-content2! []
+  (set-html! "content" (body projects-data)))
+
+(defn- fetch-content! []
+  (if-not @projects-data
+    (fetch-data!)
+    (fetch-content2!)))
+
+(defn- init! []
+  (fetch-content!))
+
+($ init!)

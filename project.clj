@@ -4,10 +4,7 @@
   :dependencies [
     [org.clojure/clojure "1.5.1"]
     [org.clojure/clojurescript "0.0-2234"]
-    [hiccups "0.3.0"]
-    [jayq "2.5.1"]
-    [quiescent "0.1.4"]
-    [sablono "0.2.22"]]
+    [hiccups "0.3.0"]]
 
   :plugins [
     [lein-cljsbuild "1.0.3"]]

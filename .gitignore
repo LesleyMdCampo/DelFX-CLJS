@@ -7,7 +7,7 @@
 .lein-repl-history
 .lein-plugins/
 
-/node-modules
+/node_modules
 /public/out/
 /public/img/
 /public/js/src.js
