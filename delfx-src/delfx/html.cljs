@@ -27,11 +27,8 @@
       (show-type link))))
 
 (defn- click-work-circle [js-evt]
-  (let [link (aget js-evt "currentTarget" "id")
-        link-id (str "#" link)])
-    (js-log js-evt)
-    ;; handle project detail page redirect and html here
-  )
+  (let [link (aget js-evt "currentTarget" "id")]
+    (aset js/window "location" "href" (str "/projects/" link ".html"))))
 
 (defn- add-events []
   (.on ($ "body") "click" ".nav-link-a7aa8" #(click-work-type %))
@@ -42,9 +39,6 @@
 ;;------------------------------------------------------------------------------
 ;; HTML
 ;;------------------------------------------------------------------------------
-
-(hiccups/defhtml single-project-page []
-  (log @projects-data))
 
 (hiccups/defhtml category-circles [work]
   [:div.type-circle-1caf1 {:id (:id work)}
@@ -122,15 +116,14 @@
 ;;------------------------------------------------------------------------------
 
 (defn- data-success [data]
-  (let [prj-data (aget data "projects")]
-    (->> prj-data
+  (->> data
       js->clj
       keywordize-keys
-      (reset! projects-data)))
+      (reset! projects-data))
   (fetch-content!))
 
 (defn- fetch-data! []
-  (.ajax $ (js-obj "url" "data.json"
+  (.ajax $ (js-obj "url" "projects.json"
     "success" data-success)))
 
 (defn- fetch-content2! []
