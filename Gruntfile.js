@@ -42,15 +42,16 @@ function parseProjectFile(fileContent, filename) {
   return project;
 }
 
-var EXAMPLE_TEMPLATE = grunt.file.read('templates/projects.mustache')
+var PROJECT_TEMPLATE = grunt.file.read('templates/projects.mustache'),
+    WORKS_PROJECT_TEMPLATE = grunt.file.read('templates/works.mustache');
 
 function createProjectHTMLFile(file){
   var filename = 'public/projects/' + file.id + '.html';
 
-  var template = EXAMPLE_TEMPLATE;
-  // if (ex.id.charAt(0) === "1") {
-  //   template = WORKS_EXAMPLE_TEMPLATE;
-  // }
+  var template = PROJECT_TEMPLATE;
+  if (file.id.charAt(0) === "1") {
+    template = WORKS_PROJECT_TEMPLATE;
+  }
 
   var html = Mustache.render(template, file);
 

@@ -77,7 +77,7 @@
   [:a.fa.fa-envelope-o {:href "mailto:dmdelc27@gmail.com?subject=love your work man" :target "_blank"}])
 
 (hiccups/defhtml header []
-  [:div#wrap
+  [:div
     [:div.large-header-1fed0
       [:div.container-32dc6
         [:div.del-bd3cd
